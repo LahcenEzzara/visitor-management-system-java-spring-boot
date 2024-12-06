@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout.html">
+
+<body>
+    <div layout:fragment="content">
+        <section class="wrapper">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <form id="badgeForm" th:action="@{/badge/badges}" method="post" enctype="multipart/form-data">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Add New Badge
+                                </header>
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <label for="eventAdd" class="control-label col-sm-4">Event Name:</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="eventAdd" name="eventid">
+                                                <option value="">-SELECT-</option>
+                                                <option th:each="event : ${events}" th:value="${event.id}"
+                                                    th:text="${event.eventName}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="visitorAdd" class="control-label col-sm-4">Visitor Name:</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" id="visitorAdd" name="visitorid">
+                                                <option value="">-SELECT-</option>
+                                                <option th:each="visitor : ${visitors}" th:value="${visitor.id}"
+                                                    th:text="${visitor.lastName}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="eventLogo" class="control-label col-sm-4">Event Logo:</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" class="form-control" id="eventLogo" name="eventLogo" accept="image/*" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="visitorPhoto" class="control-label col-sm-4">Visitor Photo:</label>
+                                        <div class="col-sm-6">
+                                            <input type="file" class="form-control" id="visitorPhoto" name="visitorPhoto" accept="image/*" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="barcodeOrQrCode" class="control-label col-sm-4">BarCode Or QrCode:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="barcodeOrQrCode" name="barcodeOrQrCode" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="panel">
+                            <div class="panel-body">
+                                <button type="submit" class="btn btn-primary">
+                                    Save
+                                </button>
+                                <a href="/badge/badges" class="btn btn-warning">
+                                    Exit
+                                </a>
+                            </div>
+                        </section>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+            <div class="toast" data-delay="5000" style="position: absolute; top: 0; right: 0;">
+                <div class="toast-header">
+                    <strong class="mr-auto">Thank you</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Success
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
